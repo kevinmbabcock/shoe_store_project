@@ -1,0 +1,11 @@
+<h3>Here are all of the stores</h3>
+
+<% if @stores.any? %>
+  <ul>
+    <% @stores.each do |store| %>
+      <li><a href="/stores/<%= store.id %>"><%= store.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no stores available</p>
+<% end %>

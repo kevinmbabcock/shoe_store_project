@@ -14,7 +14,7 @@ require('./app')
 RSpec.configure do |config|
   config.after(:each) do
     ShoeBrand.all.each do |brand|
-      task.destroy
+      shoe_brand.destroy
     end
     StoreLocation.all.each do |location|
       store_location.destroy

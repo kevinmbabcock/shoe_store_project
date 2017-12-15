@@ -1,0 +1,11 @@
+<h3><%= @store.name %></h3>
+
+<% if @store.brands.any? %>
+  <ul>
+    <% @store.brands.each do |brand| %>
+      <li><%= brand.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no brands yet</p>
+<% end %>
