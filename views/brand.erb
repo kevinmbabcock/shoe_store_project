@@ -1,11 +1,13 @@
 <h3><%= @brand.name %></h3>
 
-<% if @brand.stores.any? %>
+<% if @brand.shoe_stores.any? %>
   <ul>
-    <% @brand.stores.each do |store| %>
+    <% @brand.shoe_stores.each do |store| %>
       <li><%= store.name %></li>
     <% end %>
   </ul>
 <% else %>
   <p>There are no stores yet</p>
 <% end %>
+
+<p><a href="brand/<%= brand.id %>/edit">Click here to update or delete brand</a></p>

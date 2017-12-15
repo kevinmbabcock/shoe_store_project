@@ -1,4 +1,4 @@
-class CreateShoeBrands < ActiveRecord::Migration[5.1]
+class CreateShoeBrand < ActiveRecord::Migration[5.1]
   def change
     create_table(:shoe_brands) do |t|
       t.column(:name, :string)
