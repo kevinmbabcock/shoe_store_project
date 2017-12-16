@@ -1,6 +1,7 @@
 <h3><%= @brand.name %></h3>
 
 <% if @brand.shoe_stores.any? %>
+  <p><%= @brand.name %> is available at the following stores:</p>
   <ul>
     <% @brand.shoe_stores.each do |store| %>
       <li><%= store.name %></li>
@@ -10,4 +11,17 @@
   <p>There are no stores yet</p>
 <% end %>
 
+<form action="/brands/<%= @brand.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p><strong>Add stores:</strong></p>
+  <% @stores.each do |store| %>
+    <div class="checkbox">
+      <label for="add_stores">
+        <input type="checkbox" name="store_ids[]" value="<%= store.id %>"><%= store.name %><br>
+      </label>
+    </div>
+  <% end %>
+  <button type="submit">Submit</button>
+</form>
+<br>
 <p><a href="brand/<%= @brand.id %>/edit">Click here to update or delete brand</a></p>

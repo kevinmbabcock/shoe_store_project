@@ -19,11 +19,13 @@ end
 
 get("/brands/:id") do
   @brand = ShoeBrand.find(params[:id].to_i)
+  @stores = ShoeStore.all
   erb(:brand)
 end
 
 get("/stores/:id") do
   @store = ShoeStore.find(params[:id].to_i)
+  @brands = ShoeBrand.all
   erb(:store)
 end
 
@@ -60,6 +62,21 @@ end
 get("/brands/brand/:id/edit") do
   @brand = ShoeBrand.find(params[:id].to_i)
   erb(:edit_brand)
+end
+
+patch("/stores/:id") do
+  @store = ShoeStore.find(params[:id].to_i)
+  brand_ids = params[:brand_ids]
+  @store.update({:shoe_brand_ids => brand_ids})
+  @brands = ShoeBrand.all
+  binding.pry
+  erb(:store)
+end
+
+patch("/brands/:id") do
+
+
+  erb(:store)
 end
 
 patch("/stores/:id/edit") do
