@@ -52,15 +52,17 @@ post("/add-store") do
   erb(:admin)
 end
 
-get("/store/:id/edit") do
+get("/stores/store/:id/edit") do
+  @store = ShoeStore.find(params[:id].to_i)
   erb(:edit_store)
 end
 
-get("/brand/:id/edit") do
+get("/brands/brand/:id/edit") do
+  @brand = ShoeBrand.find(params[:id].to_i)
   erb(:edit_brand)
 end
 
-patch("/store/:id/edit") do
+patch("/stores/:id/edit") do
   name = params[:name]
   @store = ShoeStore.find(params[:id].to_i)
   @store.update({:name => name})
@@ -68,24 +70,24 @@ patch("/store/:id/edit") do
   erb(:stores)
 end
 
-patch("/brand/:id/edit") do
+patch("/brands/:id/edit") do
   name = params[:name]
   @brand = ShoeBrand.find(params[:id].to_i)
   @brand.update({:name => name})
-  @brands = Brand.all
+  @brands = ShoeBrand.all
   erb(:brands)
 end
 
-delete("/stores") do
-  @store = Store.find(params[:id].to_i)
+delete("/stores/:id") do
+  @store = ShoeStore.find(params[:id].to_i)
   @store.delete
-  @stores = Store.all
+  @stores = ShoeStore.all
   erb(:stores)
 end
 
-delete("/brands") do
-  @brand = Brand.find(params[:id].to_i)
+delete("/brands/:id") do
+  @brand = ShoeBrand.find(params[:id].to_i)
   @brand.delete
-  @brands = Brand.all
+  @brands = ShoeBrand.all
   erb(:brands)
 end
