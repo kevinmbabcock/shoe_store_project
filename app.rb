@@ -67,16 +67,25 @@ end
 patch("/stores/:id") do
   @store = ShoeStore.find(params[:id].to_i)
   brand_ids = params[:brand_ids]
+  current_ids = @store.shoe_brand_ids
+  current_ids.each do |id|
+    brand_ids.push(id)
+  end
   @store.update({:shoe_brand_ids => brand_ids})
   @brands = ShoeBrand.all
-  binding.pry
   erb(:store)
 end
 
 patch("/brands/:id") do
-
-
-  erb(:store)
+  @brand = ShoeBrand.find(params[:id].to_i)
+  store_ids = params[:store_ids]
+  current_ids = @brand.shoe_store_ids
+  current_ids.each do |id|
+    store_ids.push(id)
+  end
+  @brand.update({:shoe_store_ids => store_ids})
+  @stores = ShoeStore.all
+  erb(:brand)
 end
 
 patch("/stores/:id/edit") do
