@@ -13,6 +13,17 @@ describe(ShoeBrand) do
     expect(test_brand.save).to(eq(false))
   end
 
+  it("validates the uniqueness of a name") do
+    test_brand1 = ShoeBrand.create({:name => "nike"})
+    test_brand2 = ShoeBrand.create({:name => "nike"})
+    expect(test_brand2.save).to(eq(false))
+  end
+
+  it("validates that the name is not more than 100 characters") do
+    test_brand = ShoeBrand.create({:name => "a"*101})
+    expect(test_brand.save).to(eq(false))
+  end
+
   describe("#capitalize_name") do
     it("capitalizes the name before saving to database") do
       test_brand = ShoeBrand.create({:name => "nike"})

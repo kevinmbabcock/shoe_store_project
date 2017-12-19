@@ -13,6 +13,17 @@ describe(ShoeStore) do
     expect(test_store.save).to(eq(false))
   end
 
+  it("validates the presence of a name") do
+    test_store1 = ShoeStore.create({:name => "seattle"})
+    test_store2 = ShoeStore.create({:name => "seattle"})
+    expect(test_store2.save).to(eq(false))
+  end
+
+  it("validates the name is not more than 100 characters") do
+    test_store = ShoeStore.create({:name => "a"*101})
+    expect(test_store.save).to(eq(false))
+  end
+
   describe("#capitalize_name") do
     it("capitalizes the name of the store before saving it to database") do
       test_store = ShoeStore.create({:name => "seattle"})
