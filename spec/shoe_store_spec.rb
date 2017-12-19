@@ -7,4 +7,9 @@ describe(ShoeStore) do
     test_store = ShoeStore.create({:name => "store", :shoe_brand_ids => [test_brand1.id, test_brand2.id]})
     expect(test_store.shoe_brands).to(eq([test_brand1, test_brand2]))
   end
+
+  it("validates the presence of a name") do
+    test_store = ShoeStore.new({:name => ""})
+    expect(test_store.save).to(eq(false))
+  end
 end

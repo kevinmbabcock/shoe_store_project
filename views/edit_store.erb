@@ -6,6 +6,18 @@
   <input id="name" name="name" type="text">
   <button type="submit">Update Store</button>
 </form>
+<form action="/stores/<%= @store.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p><strong>Add brands:</strong></p>
+  <% @brands.each do |brand| %>
+    <div class="checkbox">
+      <label for="add_brands">
+        <input type="checkbox" name="brand_ids[]" value="<%= brand.id %>"><%= brand.name %><br>
+      </label>
+    </div>
+  <% end %>
+  <button type="submit">Submit</button>
+</form>
 <form action="/stores/<%= @store.id %>" method="post">
   <input name="_method" type="hidden" value="delete">
   <button type="submit">Delete Store</button>

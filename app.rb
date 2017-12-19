@@ -104,6 +104,10 @@ patch("/brands/:id/edit") do
   erb(:brands)
 end
 
+patch("/brands/brand/:id/edit") do
+
+end
+
 delete("/stores/:id") do
   @store = ShoeStore.find(params[:id].to_i)
   @store.delete
