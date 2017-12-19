@@ -12,4 +12,11 @@ describe(ShoeBrand) do
     test_brand = ShoeBrand.create({:name => ""})
     expect(test_brand.save).to(eq(false))
   end
+
+  describe("#capitalize_name") do
+    it("capitalizes the name before saving to database") do
+      test_brand = ShoeBrand.create({:name => "nike"})
+      expect(test_brand.name).to(eq("Nike"))
+    end
+  end
 end

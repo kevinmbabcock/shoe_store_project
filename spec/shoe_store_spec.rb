@@ -12,4 +12,11 @@ describe(ShoeStore) do
     test_store = ShoeStore.new({:name => ""})
     expect(test_store.save).to(eq(false))
   end
+
+  describe("#capitalize_name") do
+    it("capitalizes the name of the store before saving it to database") do
+      test_store = ShoeStore.create({:name => "seattle"})
+      expect(test_store.name).to(eq("Seattle"))
+    end
+  end
 end
