@@ -13,9 +13,9 @@ describe(ShoeStore) do
     expect(test_store.save).to(eq(false))
   end
 
-  it("validates the presence of a name") do
+  it("validates that the name is unique") do
     test_store1 = ShoeStore.create({:name => "seattle"})
-    test_store2 = ShoeStore.create({:name => "seattle"})
+    test_store2 = ShoeStore.new({:name => "seattle"})
     expect(test_store2.save).to(eq(false))
   end
 

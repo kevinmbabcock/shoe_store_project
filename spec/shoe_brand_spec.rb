@@ -15,7 +15,7 @@ describe(ShoeBrand) do
 
   it("validates the uniqueness of a name") do
     test_brand1 = ShoeBrand.create({:name => "nike"})
-    test_brand2 = ShoeBrand.create({:name => "nike"})
+    test_brand2 = ShoeBrand.new({:name => "nike"})
     expect(test_brand2.save).to(eq(false))
   end
 
@@ -30,4 +30,11 @@ describe(ShoeBrand) do
       expect(test_brand.name).to(eq("Nike"))
     end
   end
+
+  # describe("#price_format") do
+  #   it("saves the price with dollar sign and two decimal places") do
+  #     test_brand = ShoeBrand.create({:name => "nike", :price => 50})
+  #     expect(test_brand.price).to(eq("$50.00"))
+  #   end
+  # end
 end

@@ -56,6 +56,7 @@ end
 
 get("/stores/store/:id/edit") do
   @store = ShoeStore.find(params[:id].to_i)
+  @brands = ShoeBrand.all
   erb(:edit_store)
 end
 
@@ -85,6 +86,7 @@ patch("/brands/:id") do
   end
   @brand.update({:shoe_store_ids => store_ids})
   @stores = ShoeStore.all
+  binding.pry
   erb(:brand)
 end
 
@@ -102,10 +104,6 @@ patch("/brands/:id/edit") do
   @brand.update({:name => name})
   @brands = ShoeBrand.all
   erb(:brands)
-end
-
-patch("/brands/brand/:id/edit") do
-
 end
 
 delete("/stores/:id") do
